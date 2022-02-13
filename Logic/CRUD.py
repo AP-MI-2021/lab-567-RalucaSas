@@ -1,57 +1,49 @@
-from Domain.cheltuiala import creeazaCheltuiala, getId
+from Domain.Cheltuiala import creeazaCheltuiala, getId
 
-
+#id, nr_apartament, suma, data, tip
 def adaugaCheltuiala(id, nr_apartament, suma, data, tip, lista):
-    '''
-    adauga o prajitura intr-o lista
-    :param id: string
-    :param nr_apartament: int
-    :param suma: float
-    :param data: int
-    :param tip: string
-    :param lista: lista de cheltuieli
-    :return: o lista continand atat elementele vechi, cat si noua cheltuiala
-    '''
+    if getById(id, lista) is not None:
+        raise ValueError("Id-ul exista deja")
+    if int(id) < 1:
+        raise ValueError("ID-ul nu poate fi nul sau negativ!")
+    if int(nr_apartament) == 0:
+        raise ValueError("Introduceti numarulul apartamentului!")
+    if suma < 0:
+        raise ValueError("Introduceti suma!")
+    if int(data) < 1:
+        raise ValueError("Introduceti data")
+    if tip != "gaz" and tip != "caldura" and tip != "apa" and tip != "gaz" and tip != "gaz" and tip != "apa":
+        raise ValueError("Reducere invalida! Introduceti apa, gaz sau  caldura")
     cheltuiala = creeazaCheltuiala(id, nr_apartament, suma, data, tip)
     return lista + [cheltuiala]
 
-def getById(id, lista):
-    '''
-    gaseste o cheltuiala cu id-ul dat intr-o lista
-    :param id: string
-    :param lista: lista de cheltuieli
-    :return: cheltuiala cu id-ul dat din lista sau None, daca aceasta nu exista
-    '''
-    for cheltuiala in lista:
+def getById(id, cheltuielii):
+    for cheltuiala in cheltuielii:
         if getId(cheltuiala) == id:
             return cheltuiala
     return None
 
 def stergeCheltuiala(id, lista):
-    """
-    sterge o cheltuiala cu id-ul dat din lista
-    :param id: id-ul cheltuielii care se va sterge
-    :param lista: lista de cheltuieli
-    :return: o lista de cheltuieli fara elementul cu id-ul dat
-    """
+    if getById(id, lista) is None:
+        raise ValueError("Nu exista o cheltuiala cu id-ul dat")
     return [cheltuiala for cheltuiala in lista if getId(cheltuiala) != id]
 
 def modificaCheltuiala(id, nr_apartament, suma, data, tip, lista):
-    """
-    modifica o cheltuiala cu id-ul dat
-    :param id: id-ul cheltuielii
-    :param nr_apartament: numarul apartamentului
-    :param suma: suma cheltuielii
-    :param data: data cheltuielii
-    :param tip: tipul cheltuielii
-    :param lista: O lista de cheltuieli.
-    :return: lista modificata.
-    """
+    if getById(id, lista) is None:
+        raise ValueError("Nu exista o librarie cu id-ul dat")
+    if int(nr_apartament) == 0:
+        raise ValueError("Introduceti nr_apartament!")
+    if suma < 0:
+        raise ValueError("Introduceti suma!")
+    if int(data) < 1:
+        raise ValueError("Introduceti data")
+    if tip != "gaz" and tip != "caldura" and tip != "apa" and tip != "gaz" and tip != "gaz" and tip != "apa":
+        raise ValueError("Reducere invalida! Introduceti apa, gaz sau  caldura")
     listaNoua = []
     for cheltuiala in lista:
         if getId(cheltuiala) == id:
-            CheltuialaNoua = creeazaCheltuiala(id, nr_apartament, suma, data, tip)
-            listaNoua.append(CheltuialaNoua)
+            cheltuialaNoua = creeazaCheltuiala(id, nr_apartament, suma, data, tip)
+            listaNoua.append(cheltuialaNoua)
         else:
             listaNoua.append(cheltuiala)
     return listaNoua

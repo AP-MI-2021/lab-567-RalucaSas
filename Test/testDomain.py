@@ -1,4 +1,4 @@
-from Domain.cheltuiala import creeazaCheltuiala, getId, getNr_apartament, getSuma, getData, getTip
+from Domain.Cheltuiala import creeazaCheltuiala, getId, getNr_apartament, getSuma, getData, getTip
 
 
 def testCheltuiala():

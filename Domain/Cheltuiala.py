@@ -1,41 +1,21 @@
+
 def creeazaCheltuiala(id, nr_apartament, suma, data, tip):
-    '''
-    creaza un dictionar ce reprezinta o cheltuiala
-    :param id: string
-    :param nr_apartament: int
-    :param suma: float
-    :param data: int
-    :param tip: string
-    :return: un dictionar ce contine o cheltuiala
-    '''
-    return {
-        "id": id,
-        "nr_apartament": nr_apartament,
-        "suma": suma,
-        "data": data,
-        "tip": tip,
-    }
+    return [str(id), nr_apartament, suma, data, str(tip)]
 
 def getId(cheltuiala):
-    '''
-    da id-ul unei cheltuieli
-    :param cheltuiala: dictionar ce contine o cheltuiala
-    :return: id-ul cheltuielii
-    '''
-    return cheltuiala["id"]
+    return cheltuiala[0]
 
 def getNr_apartament(cheltuiala):
-    return cheltuiala["nr_apartament"]
+    return cheltuiala[1]
 
 def getSuma(cheltuiala):
-    return cheltuiala["suma"]
+    return cheltuiala[2]
 
 def getData(cheltuiala):
-    return cheltuiala["data"]
+    return cheltuiala[3]
 
 def getTip(cheltuiala):
-    return cheltuiala["tip"]
-
+    return cheltuiala[4]
 
 def toString(cheltuiala):
     return "Id: {}, Nr_apartament: {}, Suma: {}, Data: {}, Tip: {}".format(
@@ -43,5 +23,7 @@ def toString(cheltuiala):
         getNr_apartament(cheltuiala),
         getSuma(cheltuiala),
         getData(cheltuiala),
-        getTip(cheltuiala)
+        getTip(cheltuiala),
+
     )
+#id, nr_apartament, suma, data, tip

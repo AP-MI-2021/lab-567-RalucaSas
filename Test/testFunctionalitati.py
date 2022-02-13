@@ -1,6 +1,6 @@
-from Domain.cheltuiala import getSuma, getId
-from Logic.Crud import adaugaCheltuiala, getById
-from Logic.functionalitate import  ordonareDupaSuma, sumaPerApartament
+from Domain.Cheltuiala import getSuma, getId
+from Logic.CRUD import adaugaCheltuiala, getById
+from Logic.functionalitate import  ordonareDupaSuma, sumaPerApartament, cheltuieliTip
 
 def testOrdonareDupaSuma():
     lista = []
@@ -25,3 +25,15 @@ def testSumaPerApartament():
     assert len(rezultat) == 2
     assert rezultat[3] == 500
     assert rezultat[2] == 100
+
+def cheltuieliTip():
+    lista = []
+    lista = adaugaCheltuiala("1", 2, 100, 2000, "apa" , lista)
+    lista = adaugaCheltuiala("2", 3, 200, 2010, "gaz" , lista)
+    lista = adaugaCheltuiala("3", 3, 300, 2010, "gaz" , lista)
+
+    rezultat = cheltuieliTip(lista)
+
+    assert len(rezultat) == 2
+    assert rezultat["gaz"] == 15
+    assert rezultat["apa"] == 20
